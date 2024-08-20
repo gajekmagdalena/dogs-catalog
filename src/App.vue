@@ -1,9 +1,14 @@
 <template>
   <div id="app">
     <menu>
-      <router-link class="navigation-element" to="/">Dogs Catalog</router-link>
-      <router-link class="navigation-element" to="favourites-dogs">Favourites Dogs</router-link>
+      <router-link class="navigation-element" :to="{ name: 'DogsCatalog' }">
+        Dogs Catalog
+      </router-link>
+      <router-link class="navigation-element" :to="{ name: 'FavouritesDogs' }">
+        Favourites Dogs
+      </router-link>
     </menu>
+
     <router-view></router-view>
   </div>
 </template>

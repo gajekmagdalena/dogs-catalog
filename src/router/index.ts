@@ -3,7 +3,7 @@ import DogsCatalog from '@/views/DogsCatalog.vue'
 import FavouriteDogs from '@/views/FavouriteDogs.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',

@@ -3,8 +3,8 @@
     <div v-if="selectedDog.name">
       <div class="image-wrapper">
         <img :src="imageUrl" />
-        <div class="action" @click="addOrRemove">
-          <span v-if="isAdded">Remove from favorites :c</span>
+        <div class="action" @click="onBreedAction(selectedDog, imageUrl)">
+          <span v-if="isFavourite(selectedDog.id)">Remove from favorites :c</span>
           <span v-else>Add to Favorites :3</span>
         </div>
       </div>
@@ -18,44 +18,23 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { PropType } from 'vue'
 import { type IDogBreed } from '../interfaces/Dog'
-import { mapActions } from 'pinia'
-import { favouritesBreeds } from '../stores/breeds'
+import { useFavouriteBreedsStore } from '../stores/favouriteBreeds'
 
-export default {
-  name: 'DogIngo',
-  props: {
-    selectedDog: {
-      type: Object as PropType<IDogBreed>,
-      default: () => {}
-    },
-    imageUrl: {
-      type: String,
-      default: ''
-    }
+const { onBreedAction, isFavourite } = useFavouriteBreedsStore()
+
+const props = defineProps({
+  selectedDog: {
+    type: Object as PropType<IDogBreed>,
+    default: () => {}
   },
-  data: () => ({
-    isAdded: false
-  }),
-  computed: {},
-  mounted() {
-    this.isAdded = this.isFavourite(this.selectedDog.id)
-  },
-  methods: {
-    ...mapActions(favouritesBreeds, ['addBreed', 'isFavourite', 'removeBreed']),
-    addOrRemove() {
-      if (this.isAdded) {
-        this.removeBreed(this.selectedDog.id)
-        this.isAdded = false
-      } else {
-        this.addBreed(this.selectedDog, this.imageUrl)
-        this.isAdded = true
-      }
-    }
+  imageUrl: {
+    type: String,
+    default: ''
   }
-}
+})
 </script>
 
 <style scoped lang="scss">

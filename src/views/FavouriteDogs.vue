@@ -1,27 +1,17 @@
 <template>
   <div>
     <div class="container">
-      <div class="container-element" v-for="breed in breeds" :key="breed.id">
+      <div class="container-element" v-for="breed in favouriteBreeds" :key="breed.id">
         <DogInfo :image-url="breed.imageUrl" :selected-dog="breed"></DogInfo>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { favouritesBreeds } from '../stores/breeds'
-import DogInfoVue from '../components/DogInfo.vue'
-import { mapState } from 'pinia'
+<script setup lang="ts">
+import { useFavouriteBreedsStore } from '../stores/favouriteBreeds'
 
-export default {
-  name: 'FavouriteDogs',
-  components: {
-    DogInfo: DogInfoVue
-  },
-  computed: {
-    ...mapState(favouritesBreeds, ['breeds'])
-  }
-}
+const { favouriteBreeds } = useFavouriteBreedsStore()
 </script>
 
 <style lang="scss" scoped>
