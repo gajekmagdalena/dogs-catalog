@@ -12,6 +12,6 @@ export interface IDogBreed {
   bred_for: string
   breed_group: string
   temperament: string
-  origin: string
+  origin?: string
   reference_image_id: string
 }
