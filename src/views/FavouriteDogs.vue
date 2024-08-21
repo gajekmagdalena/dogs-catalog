@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <div class="container">
-      <div class="container-element" v-for="breed in favouriteBreeds" :key="breed.id">
-        <DogInfo :image-url="breed.imageUrl" :selected-dog="breed"></DogInfo>
-      </div>
+  <div class="container">
+    <div class="container-element" v-for="breed in favouriteBreeds" :key="breed.id">
+      <DogInfo :image-url="breed.imageUrl" :selected-dog="breed"></DogInfo>
     </div>
   </div>
 </template>
@@ -25,7 +23,7 @@ const { favouriteBreeds } = useFavouriteBreedsStore()
 
 .container {
   background-color: $color-primary-dark;
-  height: 100vh;
+  height: 92vh;
   width: 100%;
   margin: 0 auto;
   overflow-y: scroll;

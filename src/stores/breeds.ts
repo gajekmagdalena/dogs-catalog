@@ -6,7 +6,6 @@ import { defineStore } from 'pinia'
 export const useBreedsStore = defineStore('breedsStore', () => {
   const LIMIT = 60
 
-  const breedsList = ref<HTMLElement | null>(null)
   const breeds = ref<IDogBreed[]>([])
   const selectedBreed = ref<IDogBreed | null>(null)
   const loading = ref(false)
@@ -40,8 +39,8 @@ export const useBreedsStore = defineStore('breedsStore', () => {
     }
   }
 
-  const onInfinityScroll = () => {
-    const scrollContainer = breedsList.value
+  const onInfinityScroll = (breedsList: HTMLElement | null) => {
+    const scrollContainer = breedsList
     if (!scrollContainer) return
 
     const scrollPosition = scrollContainer.scrollTop
@@ -60,12 +59,12 @@ export const useBreedsStore = defineStore('breedsStore', () => {
       limit: searchParams.value.limit.toString()
     })
     const data = await fetchBreeds(urlParams)
+    loading.value = false
     if (infinityScroll) {
       breeds.value.push(...data)
       return
     }
     breeds.value = data
-    loading.value = false
   }
 
   const fetchBreeds = async (urlParams: URLSearchParams) => {
@@ -79,7 +78,6 @@ export const useBreedsStore = defineStore('breedsStore', () => {
 
   return {
     breeds,
-    breedsList,
     imageUrl,
     loading,
     selectedBreed,

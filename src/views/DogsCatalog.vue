@@ -2,7 +2,7 @@
   <div>
     <!-- Dog info -->
     <div class="container">
-      <div class="breeds-list" ref="breedsList" @scroll="onInfinityScroll">
+      <div class="breeds-list" ref="breedsList" @scroll="onInfinityScroll(breedsList)">
         <div v-for="breed in breeds" :key="breed.id">
           <button @click="onSelectBreed(breed)">{{ breed.name }}</button>
         </div>
@@ -14,13 +14,15 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useBreedsStore } from '../stores/breeds'
 const breedsStore = useBreedsStore()
 
 const { onSelectBreed, getBreeds, onInfinityScroll } = breedsStore
 const { breeds, imageUrl, loading, selectedBreed } = storeToRefs(breedsStore)
+
+const breedsList = ref<HTMLElement | null>(null)
 
 onMounted(() => {
   getBreeds()
@@ -49,11 +51,11 @@ button {
 }
 .breeds-list {
   overflow-y: scroll;
-  height: 100vh;
+  height: 100%;
 }
 .container {
   background-color: $color-primary-dark;
-  height: 100vh;
+  height: 92vh;
   width: 100%;
   margin: 0 auto;
   display: grid;

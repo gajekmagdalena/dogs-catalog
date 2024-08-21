@@ -1,6 +1,6 @@
 <template>
   <div class="breed-info">
-    <div v-if="selectedDog.name">
+    <div v-if="selectedDog?.name">
       <div class="image-wrapper">
         <img :src="imageUrl" />
         <div class="action" @click="onBreedAction(selectedDog, imageUrl)">
@@ -27,7 +27,7 @@ const { onBreedAction, isFavourite } = useFavouriteBreedsStore()
 
 const props = defineProps({
   selectedDog: {
-    type: Object as PropType<IDogBreed>,
+    type: Object as PropType<IDogBreed | null>,
     default: () => {}
   },
   imageUrl: {
@@ -45,6 +45,7 @@ const props = defineProps({
   font-size: 1rem;
   object-position: 50% 50%;
   text-align: center;
+  overflow-y: scroll;
   .image-wrapper {
     position: relative;
     .action {

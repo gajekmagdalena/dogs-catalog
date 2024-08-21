@@ -1,15 +1,13 @@
 <template>
   <div id="app">
-    <menu>
-      <router-link class="navigation-element" :to="{ name: 'DogsCatalog' }">
-        Dogs Catalog
-      </router-link>
-      <router-link class="navigation-element" :to="{ name: 'FavouritesDogs' }">
-        Favourites Dogs
-      </router-link>
-    </menu>
+    <nav>
+      <RouterLink class="navigation-element" to="/"> Dogs Catalog </RouterLink>
+      <RouterLink class="navigation-element" to="/favourites-dogs"> Favourites Dogs </RouterLink>
+    </nav>
 
-    <router-view></router-view>
+    <main>
+      <RouterView />
+    </main>
   </div>
 </template>
 
@@ -18,7 +16,7 @@
 <style lang="scss" scoped>
 @import '@/assets/variables.scss';
 
-menu {
+nav {
   display: flex;
   justify-content: center;
   background-color: $color-primary-dark;
