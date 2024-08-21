@@ -53,13 +53,11 @@ export const useBreedsStore = defineStore('breedsStore', () => {
   }
 
   const getBreeds = async (infinityScroll = false) => {
-    loading.value = true
     const urlParams = new URLSearchParams({
       page: searchParams.value.page.toString(),
       limit: searchParams.value.limit.toString()
     })
     const data = await fetchBreeds(urlParams)
-    loading.value = false
     if (infinityScroll) {
       breeds.value.push(...data)
       return
