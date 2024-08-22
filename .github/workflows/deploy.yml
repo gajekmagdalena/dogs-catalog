@@ -48,12 +48,10 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: 'Deployed from GitHub Actions'
 
-      - name: Deploy to Vercel
-        uses: ./.github/actions/deploy-vercel
+      - name: Vercel Preview Deployments
+        uses: snaplet/vercel-action@v3.0.1
         if: ${{ inputs.deploy-vercel }}
-        with:
-          mode: 'production'
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
         env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORGANIZATION_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ACCESS_TOKEN: ${{ secrets.VERCEL_AUTH_TOKEN }}
