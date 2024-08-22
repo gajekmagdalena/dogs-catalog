@@ -14,4 +14,13 @@ export interface IDogBreed {
   temperament: string
   origin?: string
   reference_image_id: string
+  country_code?: string
+}
+
+export interface IDogImage {
+  id: string
+  url: string
+  breeds?: IDogBreed[]
+  width?: number
+  height?: number
 }

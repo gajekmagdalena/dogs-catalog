@@ -1,5 +1,5 @@
 import { breedsService, imagesService } from '../services/dogsService'
-import { type IDogBreed } from '../interfaces/Dog'
+import { IDogImage, type IDogBreed } from '../interfaces/Dog'
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
@@ -20,20 +20,21 @@ export const useBreedsStore = defineStore('breedsStore', () => {
 
   const onSelectBreed = (dog: IDogBreed) => {
     selectedBreed.value = dog
-    getBreedImage(dog.reference_image_id)
   }
 
   const getBreedImage = async (imgId: string) => {
     loading.value = true
-    const { url } = await fetchBreedImage(imgId)
-    imageUrl.value = url
+    const url = await fetchBreedImage(imgId)
+    imageUrl.value = url ?? ''
     loading.value = false
   }
 
-  const fetchBreedImage = async (imgId: string) => {
+  const fetchBreedImage = async (imgId: string): Promise<string | undefined> => {
     try {
-      const { data } = await imagesService.getBreedImage(imgId)
-      return data
+      const {
+        data: { url }
+      } = await imagesService.getBreedImage(imgId)
+      return url
     } catch (err) {
       console.error(err)
     }
@@ -81,6 +82,8 @@ export const useBreedsStore = defineStore('breedsStore', () => {
     selectedBreed,
     onInfinityScroll,
     onSelectBreed,
-    getBreeds
+    getBreeds,
+    getBreedImage,
+    fetchBreedImage
   }
 })

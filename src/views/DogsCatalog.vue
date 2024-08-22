@@ -4,7 +4,7 @@
     <div class="container">
       <div class="breeds-list" ref="breedsList" @scroll="onInfinityScroll(breedsList)">
         <div v-for="breed in breeds" :key="breed.id">
-          <button @click="onSelectBreed(breed)">{{ breed.name }}</button>
+          <button @click="onclick(breed)">{{ breed.name }}</button>
         </div>
       </div>
       <LoadingAnimation v-if="loading"></LoadingAnimation>
@@ -17,13 +17,18 @@
 import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useBreedsStore } from '../stores/breeds'
+import { IDogBreed } from '@/interfaces/Dog'
 const breedsStore = useBreedsStore()
 
-const { onSelectBreed, getBreeds, onInfinityScroll } = breedsStore
+const { onSelectBreed, getBreedImage, getBreeds, onInfinityScroll } = breedsStore
 const { breeds, imageUrl, loading, selectedBreed } = storeToRefs(breedsStore)
 
 const breedsList = ref<HTMLElement | null>(null)
 
+const onclick = (breed: IDogBreed) => {
+  onSelectBreed(breed)
+  getBreedImage(breed.reference_image_id)
+}
 onMounted(() => {
   getBreeds()
 })

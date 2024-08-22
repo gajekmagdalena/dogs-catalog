@@ -1,15 +1,17 @@
+import { IDogImage } from '@/interfaces/Dog'
 import { apiClient } from './api-client'
+import { AxiosResponse } from 'axios'
 
 export const breedsService = {
   prefix: 'breeds',
-  getBreeds(urlParams) {
+  getBreeds(urlParams: URLSearchParams): Promise<AxiosResponse<IDogImage[]>> {
     return apiClient.get(`${this.prefix}?${urlParams}`)
   }
 }
 
 export const imagesService = {
   prefix: 'images',
-  getBreedImage(imageId) {
+  getBreedImage(imageId: string): Promise<AxiosResponse<IDogImage>> {
     return apiClient.get(`${this.prefix}/${imageId}`)
   }
 }
