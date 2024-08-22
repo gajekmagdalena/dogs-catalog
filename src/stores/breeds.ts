@@ -59,6 +59,7 @@ export const useBreedsStore = defineStore('breedsStore', () => {
       limit: searchParams.value.limit.toString()
     })
     const data = await fetchBreeds(urlParams)
+    if (!data) return
     if (infinityScroll) {
       breeds.value.push(...data)
       return
