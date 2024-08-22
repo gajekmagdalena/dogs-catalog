@@ -1,5 +1,5 @@
 import { breedsService, imagesService } from '../services/dogsService'
-import { IDogImage, type IDogBreed } from '../interfaces/Dog'
+import { IDogBreed } from '../interfaces/Dog'
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 

@@ -2,11 +2,7 @@
   <div class="loading-animation">LOADING</div>
 </template>
 
-<script>
-export default {
-  name: 'LoadingAnimation'
-}
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .loading-animation {

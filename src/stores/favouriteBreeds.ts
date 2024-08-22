@@ -1,4 +1,4 @@
-import type { IDogBreed } from '@/interfaces/Dog'
+import { IDogBreed } from '@/interfaces/Dog'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 

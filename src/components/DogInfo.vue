@@ -20,14 +20,14 @@
 
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { type IDogBreed } from '../interfaces/Dog'
+import { IDogBreed } from '../interfaces/Dog'
 import { useFavouriteBreedsStore } from '../stores/favouriteBreeds'
 
 const { onBreedAction, isFavourite } = useFavouriteBreedsStore()
 
-const props = defineProps({
+defineProps({
   selectedDog: {
-    type: Object as PropType<IDogBreed | null>,
+    type: Object as PropType<IDogBreed | undefined>,
     default: () => {}
   },
   imageUrl: {
