@@ -18,6 +18,9 @@ jobs:
     env:
       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_ORGANIZATION_ID: ${{ secrets.VERCEL_ORGANIZATION_ID }}
+      VERCEL_AUTH_TOKEN: ${{ secrets.VERCEL_AUTH_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -44,3 +47,13 @@ jobs:
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: 'Deployed from GitHub Actions'
+
+      - name: Deploy to Vercel
+        uses: ./.github/actions/deploy-vercel
+        if: ${{ inputs.deploy-vercel }}
+        with:
+          mode: 'production'
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
