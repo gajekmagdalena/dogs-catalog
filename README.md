@@ -1,4 +1,4 @@
-# dogs-catalog
+# dogs-catalog - app
 
 This app is all about showing you cool dog breeds and letting you make a list of your favorites.
 
