@@ -1,16 +1,9 @@
 name: Deploy
 
 on:
-  workflow_dispatch:
-    inputs:
-      deploy-netlify:
-        type: boolean
-        description: Enable Netlify deployment
-        default: true
-      deploy-vercel:
-        type: boolean
-        description: Enable Vercel deployment
-        default: true
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -39,18 +32,8 @@ jobs:
       - name: Build app
         run: npm run build
 
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v3.0
-        if: ${{ inputs.deploy-netlify }}
-        with:
-          publish-dir: './dist'
-          production-branch: master
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Deployed from GitHub Actions'
-
       - name: Vercel Preview Deployments
         uses: snaplet/vercel-action@v3.0.1
-        if: ${{ inputs.deploy-vercel }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORGANIZATION_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
