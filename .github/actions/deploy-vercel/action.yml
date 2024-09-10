@@ -1,12 +1,12 @@
 name: Deploy Vercel
-desctiption: Deploy Vercel in two modes
+description: Deploy Vercel in two modes
 
 inputs:
 	vercel-token:
 		description: 'Vercel token'
 		required: true
 	mode: 
-		description: 'Deploy mode'
+		description: 'Deployment mode'
 		required: true
 		default: 'production'
 
