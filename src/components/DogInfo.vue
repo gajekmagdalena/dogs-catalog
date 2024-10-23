@@ -38,7 +38,7 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/variables.scss';
+@use '../assets/variables' as v;
 
 .breed-info {
   padding: 1rem;
@@ -49,7 +49,7 @@ defineProps({
   .image-wrapper {
     position: relative;
     .action {
-      background-color: $color-primary;
+      background-color: v.$color-primary;
       position: absolute;
       top: 0;
       bottom: 0;
@@ -76,7 +76,7 @@ defineProps({
   }
   span {
     display: block;
-    border-bottom: 2px $color-primary-light solid;
+    border-bottom: 2px v.$color-primary-light solid;
     padding: 10px 0px;
     text-align: left;
   }

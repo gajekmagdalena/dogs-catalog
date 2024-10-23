@@ -35,23 +35,23 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/variables.scss';
+@use '../assets/variables' as v;
 
 * {
   margin: 0;
   padding: 0;
-  color: $color-text;
+  color: v.$color-text;
 }
 
 button {
-  background-color: $color-detail-dark;
-  border: 1px $color-detail-dark;
+  background-color: v.$color-detail-dark;
+  border: 1px v.$color-detail-dark;
   border-radius: 4px;
   padding: 2px;
   margin: 2px;
 
   &:hover {
-    background-color: $color-detail-light;
+    background-color: v.$color-detail-light;
   }
 }
 .breeds-list {
@@ -59,7 +59,7 @@ button {
   height: 100%;
 }
 .container {
-  background-color: $color-primary-dark;
+  background-color: v.$color-primary-dark;
   height: 92vh;
   width: 100%;
   margin: 0 auto;

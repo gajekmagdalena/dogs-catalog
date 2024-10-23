@@ -14,20 +14,20 @@
 <script setup lang="ts"></script>
 
 <style lang="scss" scoped>
-@import '@/assets/variables.scss';
+@use '@/assets/variables.scss' as v;
 
 nav {
   display: flex;
   justify-content: center;
-  background-color: $color-primary-dark;
+  background-color: v.$color-primary-dark;
   margin-bottom: 1px;
 
   .navigation-element {
     padding: 0.5rem;
     text-decoration: none;
-    color: $color-text;
+    color: v.$color-text;
     &:hover {
-      background-color: $color-primary;
+      background-color: v.$color-primary;
     }
     &:visited {
       text-decoration: none;
